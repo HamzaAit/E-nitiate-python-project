@@ -15,7 +15,7 @@ size = (width,height)
 COCO_SPEED = 4
 ROCK_SPEED = 3 
 clock = pygame.time.Clock()
-pygame.display.set_caption("The Feint Game: 9riyed ou lBanane")
+#pygame.display.set_caption("The Feint Game: 9riyed ou lBanane")
 FPS = 3000
  
 coin_offset = 60
@@ -35,7 +35,6 @@ class load:
 
 #image_1 = load().image("bg_solid_black_square.jpg")
 #image_2 = load().image("ball_blue.png")
-
 
 
 
@@ -103,7 +102,7 @@ player = Player("awesome.png")
 coin = Coin("banana.png")
 coin2 = Coin2("poop.png")
 
-Vie = 4
+Vie = 2
 
 walls.add(wall_1,wall_2,wall_3,wall_4)
 players.add(player)
@@ -113,10 +112,10 @@ all_sprites.add(wall_1,wall_2,wall_3,wall_4,player,coin,coin2)
 fond = "awesome.png"
 
 rock_x = random.randrange(0, width)
-rock_y = 25
+rock_y = -75
 
 coco_x = random.randrange(0, width)
-coco_y = 65
+coco_y = -95
 
 flag = 0
 score = 1
@@ -127,10 +126,20 @@ done = False
 game_over = False
 
 
+
 #def main():
 while not done:
 
     game_over = False
+
+    if points <10:
+        ROCK_SPEED=0
+        COCO_SPEED=0
+    elif points >= 10 and points < 20:
+        ROCK_SPEED=3
+        COCO_SPEED=0
+    elif points >=20:
+        COCO_SPEED=4
     
  
     clock.tick(FPS)
@@ -147,6 +156,10 @@ while not done:
     collide_list_4 = pygame.sprite.spritecollideany(wall_4,players)
     collide_list_5 = pygame.sprite.spritecollideany(coin, players)
     collide_list_6 = pygame.sprite.spritecollideany(coin2, players)
+
+    if points<= (-10):
+        game_over = True
+
 
     if not game_over:
    
@@ -166,8 +179,11 @@ while not done:
                 elif event.key == K_DOWN or event.key == K_s:
                     movey = 4
                 elif event.key == K_SPACE:
-                    Vie = 4
+                    Vie = 2
+                    
                     points = 0
+                    rock_y=-65
+                    coco_y=-95
                
             if event.type == KEYUP:
                 if event.key == K_LEFT or event.key == K_a or event.key == K_RIGHT or event.key == K_d:
@@ -230,11 +246,11 @@ while not done:
         coco_y = coco_y + COCO_SPEED
     
         if rock_y > height:
-            rock_y = -25
+            rock_y = -75
             rock_x = random.randrange(0, width)
 
         if coco_y > height:
-            coco_y = -65
+            coco_y = -95
             coco_x = random.randrange(0, width)
 
         black = (0, 0, 0)

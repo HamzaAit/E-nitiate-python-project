@@ -20,7 +20,7 @@ clock = pygame.time.Clock()
 #pygame.display.set_caption("The Feint Game: 9riyed ou lBanane")
 FPS = 3000
 
-pygame.mixer.music.load("C:/Users/67665/Downloads/E-nitiate-python-project-master/E-nitiate-python-project-master/Poop Mania (Copyright)/app_resources/sound_resources/leekspin.mp3")
+pygame.mixer.music.load("app_resources/sound_resources/leekspin.mp3")
 pygame.mixer.music.set_volume(0.5)
 pygame.mixer.music.play(-1)
 

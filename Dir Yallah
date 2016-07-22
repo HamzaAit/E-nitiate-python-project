@@ -21,7 +21,7 @@ clock = pygame.time.Clock()
 FPS = 3000
 
 pygame.mixer.music.load("app_resources/sound_resources/leekspin.mp3")
-pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.set_volume(5)
 pygame.mixer.music.play(-1)
 
 coin_offset = 60
@@ -249,6 +249,12 @@ while not done:
             coin.rect.y = random.randint(0,height-coin_offset)
 
 
+        #if score < 10:
+            #rock_y = -65
+        #if score < 20:
+            #coco_y = - 95
+            
+
         rock_y = rock_y + ROCK_SPEED
 
         coco_y = coco_y + COCO_SPEED
@@ -297,7 +303,12 @@ while not done:
             #pygame.quit()
         else: game_over = False
 
-    
+        #if points <= (-10) :
+            #game_over = True
+
+        #elif points > (-10):
+            #game_over = False
+   
     
         message = "Points: "+str(points)
         font = pygame.font.Font(None, 40)
@@ -337,4 +348,3 @@ while not done:
             #screen.blit(fond, player_dimension) 
         
     pygame.display.update()
-

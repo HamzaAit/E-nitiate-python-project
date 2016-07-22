@@ -116,7 +116,7 @@ rock_x = random.randrange(0, width)
 rock_y = 25
 
 coco_x = random.randrange(0, width)
-coco_y = 25
+coco_y = 45
 
 flag = 0
 score = 1
@@ -220,7 +220,7 @@ while True:
         rock_x = random.randrange(0, width)
 
     if coco_y > height:
-        coco_y = -25
+        coco_y = -45
         coco_x = random.randrange(0, width)
 
     black = (0, 0, 0)

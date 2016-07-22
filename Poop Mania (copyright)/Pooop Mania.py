@@ -12,8 +12,7 @@ sound_resources = "app_resources/sound_resources/"
 width,height = 1280,640
 size = (width,height)
 
-COCO_SPEED = 3
-ROCK_SPEED = 3 
+ROCK_SPEED = 10 
 clock = pygame.time.Clock()
 pygame.display.set_caption("The Feint Game: 9riyed ou lBanane")
 FPS = 3000
@@ -84,9 +83,6 @@ player_dimension = player.get_width()
 rock = pygame.image.load("C:/Users/67665/Downloads/E-nitiate-python-project-master/E-nitiate-python-project-master/Poop Mania (Copyright)/Poop Mania (copyright)/app_resources/image_resources/Rock.png")
 rock = pygame.transform.scale(rock, (75, 75))
 
-coco = pygame.image.load("C:/Users/67665/Downloads/E-nitiate-python-project-master/E-nitiate-python-project-master/Poop Mania (Copyright)/Poop Mania (copyright)/app_resources/image_resources/Coconut.png")
-coco = pygame.transform.scale(coco, (75, 75))
-
 x,y = width/2-player_dimension,height/2-player_dimension
 movex,movey = 0,0
  
@@ -115,11 +111,6 @@ fond = "awesome.png"
 rock_x = random.randrange(0, width)
 rock_y = 25
 
-coco_x = random.randrange(0, width)
-coco_y = 25
-
-flag = 0
-score = 1
 
 while True:
     
@@ -127,8 +118,6 @@ while True:
     clock.tick(FPS)
 
     rock_rect = rock.get_rect(center = (rock_x, rock_y))
-
-    coco_rect = coco.get_rect(center = (coco_x, coco_y))
  
     ticks = pygame.time.get_ticks()
    
@@ -196,7 +185,6 @@ while True:
    
     if collide_list_5 != None:
         points += 1
-        score += 1
         coin.rect.x = random.randint(0,width-coin_offset)
         coin.rect.y = random.randint(0,height-coin_offset)
         coin2.rect.x = random.randint(0,width-coin2_offset)
@@ -204,7 +192,6 @@ while True:
 
     if collide_list_6 != None:
         points -= 2
-        score -= 2
         coin2.rect.x = random.randint(0,width-coin2_offset)
         coin2.rect.y = random.randint(0,height-coin2_offset)
         coin.rect.x = random.randint(0,width-coin_offset)
@@ -212,16 +199,10 @@ while True:
 
 
     rock_y = rock_y + ROCK_SPEED
-
-    coco_y = coco_y + COCO_SPEED
     
     if rock_y > height:
         rock_y = -25
         rock_x = random.randrange(0, width)
-
-    if coco_y > height:
-        coco_y = -25
-        coco_x = random.randrange(0, width)
 
     black = (0, 0, 0)
     
@@ -230,35 +211,8 @@ while True:
     text = font.render(message, Vie, black)
     screen.blit(text, (1150,10))                                 
     screen.blit(rock, (rock_x, rock_y))
-    screen.blit(coco, (coco_x, coco_y))
 
-    if (x <= rock_x + 50 and x >= rock_x - 50) and (y <=rock_y + 50 and y >= rock_y -50 ):
-        Vie -= 1
-        rock_x = random.randrange(0, width)
-        rock_y = -5
-
-    if (x <= coco_x + 50 and x >= coco_x - 50) and (y <=coco_y + 50 and y >= coco_y -50 ):
-        Vie -= 1
-        coco_x = random.randrange(0, width)
-        coco_y = -5
-
-    if score % 20 != 0:
-        flag = 0
-    
-    elif flag == 1 and score != 0:
-            Vie += 1
-            score = 0
-            flag = 2 
-            
-    elif flag == 0:
-        flag = 1
-
-
-    if Vie <= 0:
-        pygame.quit()
-
-    
-    
+     
     message = "Points: "+str(points)
     font = pygame.font.Font(None, 40)
     text = font.render(message, points, black)
